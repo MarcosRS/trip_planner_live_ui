@@ -32,8 +32,100 @@
 
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfQxgWt-LSZcEmTEN8581Uq9SzZHnpuys"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuMSIHBkITmPtJfV3EvvWdh490FZ313R4"></script>
     <script src="/js/map.js"></script>
+
+    <script>
+      var hotels = {{ hotels | dump | safe }};
+      var restaurants = {{ restaurants | dump | safe }};
+      var activities = {{ activities | dump | safe }};
+
+      // var map;
+      //
+      // function initMap() {
+      //   var uluru = {lat: -25.363, lng: 131.044};
+      //   var map = new google.maps.Map(document.getElementById('map-canvas'), {
+      //     zoom: 4,
+      //     center: uluru
+      //   });
+      //   var marker = new google.maps.Marker({
+      //     position: uluru,
+      //     map: map
+      //   });
+      // }
+
+      var map;
+      function initialize()
+      {
+        latLng = new google.maps.LatLng(40.7067692,-74.0112509);
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: new google.maps.LatLng(40.7067692,-74.0112509),//Setting Initial Position
+          zoom: 17
+          // icon: {
+          //   path: google.maps.SymbolPath.CIRCLE,
+          //   scale: 10
+          // }
+        });
+
+        var marker = new google.maps.Marker({
+           position: latLng,
+           title:"Hello World!",
+           icon: {
+             path: google.maps.SymbolPath.CIRCLE,
+             scale: 10 },
+           visible: true
+        });
+       marker.setMap(map);
+      }
+
+
+
+
+      var position = { lat: 40.7170, lng: 74.0090 }
+
+      function addMarker(position) {
+        var marker = new google.maps.Marker({
+          position: { lat: 40.7067692, lng: 74.0112509 },
+          icon: {
+            path: google.maps.SymbolPath.ARROW,
+            scale: 10},
+          map: map
+        });
+      }
+
+      addMarker();
+
+
+
+      function newLocation(newLat,newLng)
+      {
+      	map.setCenter({
+      		lat : newLat,
+      		lng : newLng
+      	});
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+      $('.btn-circle').on('click', function(e) {
+        var d = $(this).data("type");
+        var value = $(this).siblings('select').val();
+        var text = $('#' + d + '-choices option:selected').text();
+
+        $('#' + d + '-list').append('<div class="itinerary-item">' +
+                                    '<span class="title">' + text +
+                                    '</span>' +
+                                    '<button class="btn btn-xs btn-danger remove btn-circle">x</button>' + '</div>');
+      });
+
+      $('.list-group').on('click', '.remove', function(e) {
+
+        $(this).parent().remove();
+
+      });
+    </script>
 
   </body>
 </html>
