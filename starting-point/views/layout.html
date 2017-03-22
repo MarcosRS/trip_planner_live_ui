@@ -38,21 +38,10 @@
     <script>
     
 
-            var hotels = {
-                {
-                    hotels | dump | safe
-                }
-            };
-            var restaurants = {
-                {
-                    restaurants | dump | safe
-                }
-            };
-            var activities = {
-                {
-                    activities | dump | safe
-                }
-            };
+            var hotels = {{hotels | dump | safe}};
+            var restaurants = {{restaurants | dump | safe}};
+            
+            var activities = {{activities | dump | safe}};
 
             // var map;
             //
@@ -111,7 +100,7 @@
 
 
 
-            $('.btn-circle').on('click', function(e) {
+            $('.btn-circle.add').on('click', function(e) {
                 var type = $(this).data("type");
                 var location = $('#' + type + '-choices option:selected')
                     .data("location").split(",") //lat and long
@@ -137,6 +126,14 @@
                 $(this).parent().remove();
 
             });
+
+
+            $('.day-btn').on('click', function(e) {
+
+                console.log('hello');
+
+            });
+
     </script>
 
   </body>
