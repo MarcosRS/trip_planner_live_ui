@@ -13,7 +13,7 @@
             <h4>Hotels</h4>
             <select data-type="hotel" id="hotel-choices" class="choice">
               {% for hotel in hotels %}
-                  <option value = "{{hotel.id}}">{{hotel.name}}</option>
+                  <option value = "{{hotel.id}}" data-location = "{{hotel.place.location}}">{{hotel.name}}</option>
               {% endfor %}
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right" data-type="hotel">+</button>
@@ -22,7 +22,7 @@
             <h4>Restaurants</h4>
             <select data-type="restaurant" id="restaurant-choices" class="choice">
               {% for restaurant in restaurants %}
-                  <option value = "{{restaurant.id}}">{{restaurant.name}}</option>
+                  <option value = "{{restaurant.id}}" data-location = "{{restaurant.place.location}}">{{restaurant.name}}</option>
               {% endfor %}
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right" data-type="restaurant">+</button>
@@ -31,7 +31,7 @@
             <h4>Activities</h4>
             <select data-type="activity" id="activity-choices" class="choice">
               {% for activity in activities %}
-                  <option value = "{{activity.id}}">{{activity.name}}</option>
+                  <option value = "{{activity.id}}" data-location = "{{activity.place.location}}">{{activity.name}}</option>
               {% endfor %}
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right" data-type="activity">+</button>
